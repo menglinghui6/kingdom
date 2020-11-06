@@ -24,9 +24,8 @@ def train_model(model, optimizer, loss_class, loss_domain, X_s1, X_s2, Y_s, X_t1
     loss1, loss2, loss3, loss4, loss5 = [], [], [], [], []
     preds1, preds2, preds3 = [], [], []
     labels1, labels2, labels3 = [], [], []
-    
+    alpha=0
     permutation = torch.randperm(X_s.size(0))
-
     for i in range(0, X_s.size(0), batch_size):
         
         p = float(i + epoch * len_dataloader) / n_epochs / len_dataloader
@@ -35,7 +34,6 @@ def train_model(model, optimizer, loss_class, loss_domain, X_s1, X_s2, Y_s, X_t1
             alpha = 4./ (1. + np.exp(-10 * p)) - 1
         elif al == 2:
             alpha = 2./ (1. + np.exp(-10 * p)) - 1
-        
         model.train()
         optimizer.zero_grad()
 

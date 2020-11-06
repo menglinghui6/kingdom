@@ -8,10 +8,10 @@ def parse_processed_amazon_dataset(FNames, max_words):
 
     # First pass on document to build dictionary
     for fname in FNames:
-        f = open(fname)
+        f = open(fname,'r',encoding='UTF-8')
         for l in f:
             tokens = l.split(sep=' ')
-            label_string = tokens[-1]
+            label_string= tokens[-1]
             tokens_list=[]
             for tok in tokens[:-1]:
                 ts, tfreq = tok.split(':')
@@ -30,7 +30,7 @@ def parse_processed_amazon_dataset(FNames, max_words):
         X = []
         Y = []
         docid = -1
-        f = open(fname)
+        f = open(fname,'r',encoding='UTF-8')
         for l in f:
             tokens = l.split(sep=' ')
             label_string = tokens[-1]
